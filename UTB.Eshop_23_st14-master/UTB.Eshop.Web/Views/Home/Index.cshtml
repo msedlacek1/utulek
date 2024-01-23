@@ -1,0 +1,135 @@
+﻿@model CarouselProductViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="hero text-center backgroundimg" style="background-image: url('img/main_fotka.png');">
+    <div class="welcometext">
+        <h1 class="display-4">Útulek zvířátek s virtuální adopcí</h1>
+        <p class="lead" style="font-size: x-large">Náš cíl je provádět co nejlepší péči o zvířátka bez domova a možnost adopce pro páníčky co si to nemohou dovolit</p>
+        <a class="welcomebutton btn float-end" id="scrollButton" onclick="scrollDown()">Pomoc nám</a>
+    </div>
+</div>
+<div class="text-center">
+    <h1 class="display-4">Něco málo o nás</h1>
+    <div class="row">
+        <div class="col-6">
+            <h2 class="onas">
+                Zvířata milujeme.<br>
+                Jejich osudy nám nejsou lhostejné.<br>
+                Proto je naší dlouhodobou vizí budovat útulek, který budou milovat.
+            </h2>
+            <p class="onasp">
+                Takový útulek, kde se jim dostane lásky, kterou si zaslouží každý jeden z nich.<br>
+                Útulek, kde nebudou celé dny zavření v kotci a budou vlastně jen přežívat.<br>
+                Našim svěřencům chceme nalévat znovu čerstvou krev do žil,
+                dávat jim zase větší chuť k životu a naučit je znovu důvěřovat člověku.<br>
+                To vše ideálně s péčí o naše životní prostředí.<br>
+                Se psy denně pracujeme, trénujeme je, odnaučujeme je starým zlozvykům,
+                které jim často brání v jejich „adoptovatelnosti“.<br>
+                Spolupracujeme s vynikajícími trenéry a cvičáky.<br>
+                Věnujeme jim spoustu času, hrajeme si s nimi,
+                venčíme je a bereme je na výlety do okolních měst a obcí, často i s dalšími pejskaři.<br>
+                Zapojujeme je do coursingu a socializačních aktivit.<br>
+                Zkrátka jim dopřáváme spoustu lásky, tréninku a psiny.
+            </p>
+        </div>
+        <div class="col-6">
+            <img src="img/goodboi.png" alt="Good Boy Image" class="img-fluid">
+        </div>
+    </div>
+</div>
+
+@{
+    if (Model != null && Model.Zviratka != null && Model.Zviratka.Count > 0)
+    {
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+
+                    @foreach (var zviratko in Model.Zviratka)
+                    {
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Zvirata image-->
+                                <img class="card-img-top" src="@zviratko.ImageSrc" alt="..." />
+                                <!-- Zvirata details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Zvirata name-->
+                                        <h5 class="fw-bolder">@zviratko.Name</h5>
+                                    </div>
+                                </div>
+                                <!-- Zvirata actions (sem hodit napriklad nejaky buton, ktery bute kliknutelny s moznosti adopce zvirete, ktery pote presmeruje uzivatele)-->
+                               
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+}
+<div class="kontakty">
+    <div class="row kontaky-row">
+        <div class="col kontaky-col">
+            <h1 style="-webkit-text-stroke: 1px black">Kontaktujte nás</h1>
+            <h2 style="-webkit-text-stroke: 1.5px black">Neváhejte nám zavolat nebo nám poslat e-mail se svými dotazy či připomínkami.</h2>
+            <p>Budeme rádi, když se nám ozvete, ať už máte zájem o práci v našem týmu nebo o kariéru u nás.</p>
+            <form asp-page="/Contact/Submit" method="post">
+                <div class="form-group">
+                    <label for="jmeno">Jméno</label>
+                    <input type="text" class="form-control" id="jmeno" name="Jmeno" placeholder="Jméno a příjmení">
+                </div>
+                <div class="form-group">
+                    <label for="email">Emailová adresa</label>
+                    <input type="email" class="form-control" id="email" name="Email" placeholder="jmeno@email.cz">
+                </div>
+                <div class="form-group">
+                    <label for="telefon">Telefonní číslo</label>
+                    <input type="text" class="form-control" id="telefon" name="Telefon" placeholder="+420 555 666 444">
+                </div>
+                <div class="form-group">
+                    <label for="zprava">Zpráva</label>
+                    <input type="text" class="form-control" id="zprava" name="Zprava" placeholder="Dobrý den chtěl bych se zeptat . . . . ." style="height: 200px; align-items: flex-start; padding-top: 0; padding-bottom: 0;">
+                </div>
+                <button type="submit" class="welcomebutton btn" style="margin-top: 15px; margin-left: 5px">Poslat!</button>
+            </form>
+        </div>
+        <div class="col mapa align-content-center">
+            <div class="container">
+                <div class="row" style="margin-top: 25px">
+                    <div class="col-md">
+                        <H1>Ludvík Uchytil</H1>
+                        <p> +420 888 888 888</p>
+                        <p>l_uchytil@utulek.cz</p>
+                    </div>
+                    <div class="col-md">
+                        <H1>Martin Sedláček</H1>
+                        <p> +420 999 888 888</p>
+                        <p>m_sedlacek@utulek.cz</p>
+                    </div>
+                    <h2>4511 Nad Stráněmi, Zlínský kraj 760 05 CZ</h2>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2605.419165528633!2d17.657153500000003!3d49.2305416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47130cab149889ad%3A0xbe30b6b1a400eaa8!2zTmFkIFN0csOhbsSbbWkgNDUxMSwgNzYwIDA1IFpsw61uIDU!5e0!3m2!1scs!2scz!4v1702831660982!5m2!1scs!2scz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/shop_home.css" asp-append-version="true" />
+}
+
+
+@section Scripts
+{
+    <environment include="Development">
+        <script src="~/js/product.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/product.min.js"></script>
+    </environment>
+}

@@ -1,0 +1,46 @@
+﻿@model IList<Zvire>
+
+@{
+    ViewData["Title"] = "Zvire Administration";
+}
+<h1>@ViewData["Title"]</h1>
+
+<a asp-action="Create">Create Zvire</a>
+
+@{
+    if (Model != null && Model.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">@nameof(Zvire.Id)</th>
+                    <th scope="col">@nameof(Zvire.Name)</th>
+                    <th scope="col">@nameof(Zvire.Description)</th>
+                    <th scope="col">@nameof(Zvire.Price)</th>
+                    <th scope="col">@nameof(Zvire.ImageSrc)</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (int i = 0; i < Model.Count; ++i)
+                {
+                    <tr>
+                        <th scope="row">@Model[i].Id</th>
+                        <td>@Model[i].Name</td>
+                        <td>@Model[i].Description</td>
+                        <td>@Model[i].Price</td>
+                        <td>@Model[i].ImageSrc</td>
+                        <td><a asp-action="Delete" asp-route-id="@Model[i].Id" onclick="return ConfirmDelete();">Delete</a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+}
+
+@section Scripts
+{
+    <script src="~/js/dialogs.js"></script>
+}
